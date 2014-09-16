@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Elasticsearch presentation</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+  </head>
+  <body>
+    <article>
+      <section><img src="http://devrates.com/project/logo/173" height="150">
+        <h1>Elasticsearch</h1>
+        <h3>You Know, for Search</h3><br><br><small>Elasticsearch presentation 09/14 @ Web-Dev-BBQ Stuttgart/Germany</small>
+      </section>
+      <section><b>Your flight captain for the next couple of minutes:</b><br>
+        <h2>Markus Wanjura</h2><br>
+        <p>Head of IT & Development&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> @ develop4edu GmbH Stuttgart<img src="http://d4e.io/D4E-Logo-Symbol-rand_schriftzug200x200.jpg" height="50" class="d4e-logo"></p>
+      </section>
+      <section>
+        <h2>Let's start!</h2>
+      </section>
+      <section data-bespoke-state="danger">
+        <h2>One of the most common requirement for a modern web application!</h2>
+        <h1>&#x25BE;</h1>
+        <h1>Search.</h1>
+      </section>
+      <section>
+        <h2>Does the following dialog sound familiar to you?</h2>
+      </section>
+      <section>
+        <h2>Customer:</h2>
+        <h3>I need a search for my shop?</h3><br>
+        <h2>Me:</h2>
+        <h3>Easy! Let's use SQL!</h3><br>
+        <pre><code class="language-javascript">SELECT * FROM produkt
+    WHERE titel LIKE '%foobar%'
+    ORDER BY price DESC
+    LIMIT 1000;
+    </code></pre>
+      </section>
+      <section class="gif gif--happy">
+        <h2>Me:</h2>
+      </section>
+      <section>
+        <h2>Customer:</h2><br>
+        <ul>
+          <li>Can you handle <b>filters</b>?</li>
+          <li>How about <b>fuzzy</b> search?</li>
+          <li>I need <b>autocompletition</b>?</li>
+          <li>Can you show <b>result counts</b> on filters?</li>
+          <li>Marketing asked to <b>boost</b> that product XY for a while!</li>
+          <li>What about <b>sorting</b> and <b>pagination</b>?</li>
+          <li>I want a "<b>Did you mean?</b>" function.</li>
+          <li>Does it <b>scale</b>?</li>
+          <li>Ops team asked for <b>failover</b>, <b>replication</b> and <b>clustering</b>!</li>
+          <li>It has to be <b>blazing fast</b>!</li>
+          <li>Could you...</li>
+        </ul>
+      </section>
+      <section data-bespoke-state="anger" class="gif gif--mad">
+        <h2>Me: ...</h2>
+      </section>
+      <section>
+        <h2>What kind of technology can handle that?</h2>
+      </section>
+      <section>
+        <h1 class="bullet">Lucene</h1>
+        <ul>
+          <li><b>formally:</b> Apache Lucene&trade;</li>
+          <li>Open-source search engine.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Do i want to integrate Lucene directly into my webapp?</h2>
+        <h3>And manage ALL by my self?</h3>
+      </section>
+      <section class="gif gif--no"><br><br><br><br><br><br><br><br>
+        <h1 style="position: absolute; left: 25px; top: 40px;">No!</h1><br><b style="position: absolute; left: 30px; top: 20px;">If you don't have to, you won't!</b>
+      </section>
+      <section>
+        <h3>Ok. Got it!</h3>
+        <h2>Is there an enterprise ready search server based on lucene?</h2>
+      </section>
+      <section>
+        <h1>Elasticsearch</h1>
+        <h2>vs.</h2>
+        <h1>Apache Solr</h1>
+      </section>
+      <section>
+        <h2>I'll keep this part short.</h2>
+        <p>We used a Solr 3.x for a couple of year's. <br>It was a bit painful and slow development.</p>
+        <p>It woulnd't be fair to compare a Solr 3.x with an Elasticsearch 1.x.</p>
+      </section>
+      <section>
+        <h2>Solr 4.x and Elasticsearch 1.x are equal competitors</h2><br>
+        <p>In our infrastructure scaleability is key!<br>So we decided to move to Elasticsearch.</p><br><b>Our evaluation keypoints were:</b>
+        <ul class="bullet">
+          <li>Elasticsearch is the more modern and faster growing ecosystem</li>
+          <li>It is designed to be distributed from the ground up</li>
+          <li>Friendlier to teams which are used to REST APIs and JSON</li>
+          <li>We already use Logstash+Kibana for webserver log aggregation<br><small>(with an index amount of hundrets of gigabyte)</small></li>
+          <li>Big scale portals like GitHub, XING, SoundCloud use it</li>
+        </ul>
+      </section>
+      <section>
+        <h2>If your ecosystem supports Solr more and scaleability is not your biggest keypoint,</h2>
+        <h3>I think you'll be very happy with either Solr or Elasticsearch.</h3><br>
+        <p>You'll find a very good Feature Smackdown at <a href="http://solr-vs-elasticsearch.com/">http://solr-vs-elasticsearch.com/</a></p>
+      </section>
+      <section class="gif gif--jiggle">
+        <h1>Let's move on</h1>
+        <h2>and have some fun with Elasticsearch.</h2>
+      </section>
+      <section>
+        <h2>Local installation</h2>
+        <p>(Mac)</p>
+        <pre><code class="language-javascript">$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ brew install elasticsearch
+$ elasticsearch start</code></pre><br>
+        <p>(Windows untested)</p>
+        <pre><code class="language-javascript">Download zip from elasticsearch.org...
+c:\elasticsearch-{version}bin>service install
+Installing service      :  "elasticsearch-service-x64"
+Using JAVA_HOME (64-bit):  "c:\jvm\jdk1.7"
+The service 'elasticsearch-service-x64' has been installed.</code></pre><br><a>http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/setup-service-win.html</a>
+      </section>
+      <section>
+        <h2>DONE!</h2><br>
+        <h3>Open your browser with <a href="http://localhost:9200/">http://localhost:9200/</a></h3><img src="images/local-elastic.png" width="500" height="500">
+      </section>
+      <section class="gif gif--respect"></section>
+      <section>
+        <h2>Put some data to our index</h2>
+        <pre><code class="language-javascript">curl -XPUT 'http://127.0.0.1:9200/blog/post/1' -d '{
+    "user": "mwanjura",
+    "postDate": "2014-09-10",
+    "body": "Search is hard. Search should be easy." ,
+    "title": "On search"
+}'
+curl -XPUT 'http://127.0.0.1:9200/blog/post/2' -d '{
+    "user": "mwanjura",
+    "postDate": "2014-08-12",
+    "body": "Distribution is hard. Distribution should be easy." ,
+    "title": "On distributed search"
+}'
+curl -XPUT 'http://127.0.0.1:9200/blog/post/3' -d '{
+    "user": "mwanjura",
+    "postDate": "2014-07-10",
+    "body": "We need a new search" ,
+    "title": "Better search"
+}'
+</code></pre>
+      </section>
+      <section>
+        <h2>Result</h2>
+        <p>Index mapping is dynamically created for you</p>
+        <pre><code class="language-javascript">{"_index":"blog","_type":"post","_id":"1","_version":1,"created":true}
+{"_index":"blog","_type":"post","_id":"2","_version":1,"created":true}
+{"_index":"blog","_type":"post","_id":"3","_version":1,"created":true}
+</code></pre>
+      </section>
+      <section>
+        <h3>Index mapping</h3>
+        <pre><code class="language-javascript">curl -XGET 'http://127.0.0.1:9200/blog/_mapping?pretty=true'</code></pre><b>Result</b>
+        <pre><code class="language-javascript">{
+  "blog" : {
+    "mappings" : {
+      "post" : {
+        "properties" : {
+          "body" : { "type" : "string" },
+          "postDate" : { "type" : "date", "format" : "dateOptionalTime" },
+          "title" : { "type" : "string" },
+          "user" : { "type" : "string" }
+        }
+      }
+    }
+  }
+}</code></pre>
+      </section>
+      <section>
+        <h3>Get some specific data by id</h3>
+        <pre><code class="language-javascript">curl -XGET 'http://127.0.0.1:9200/blog/post/2?pretty=true'</code></pre><b>Result</b>
+        <pre><code class="language-javascript">{
+    "_index" : "blog",
+    "_type" : "post",
+    "_id" : "2",
+    "_version" : 1,
+    "found" : true,
+}
+"_source":{ "user": "mwanjura", "postDate": ...}
+</code></pre>
+      </section>
+      <section>
+        <h3>Basic search by date</h3>
+        <pre><code class="language-javascript">curl -XGET 'http://127.0.0.1:9200/blog/_search?pretty=true' -d '
+{
+    "query" : {
+        "range" : {
+            "postDate" : { "from" : "2014-08-10", "to" : "2014-12-12" }
+        }
+    }
+}'
+</code></pre>
+      </section>
+      <section>
+        <h3>Result</h3>
+        <pre><code class="language-javascript">{
+  "took": 4,
+  "timed_out": false,
+  "_shards": {
+    "total": 15,
+    "successful": 15,
+    "failed": 0
+  },
+  "hits": {
+    "total": 2,
+    "max_score": 1,
+    "hits": [
+      {
+        "_index": "blog",
+        "_type": "post",
+        "_id": "1",
+        "_score": 1,
+        "_source": {
+          "user": "mwanjura",
+          "postDate": "2014-09-10",
+          "body": "Search is hard. Search should be easy.",
+          "title": "On search"
+        }
+      },
+      {
+        "_index": "blog",
+        "_type": "post",
+        "_id": "2",
+        "_score": 1,
+        "_source": {
+          "user": "mwanjura",
+          "postDate": "2014-08-12",
+          "body": "Distribution is hard. Distribution should be easy.",
+          "title": "On distributed search"
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+      </section>
+      <section>
+        <h2>GUI's</h2><br>
+        <p>You don't want to use curl on terminal the whole time?</p><br><a>http://elastichammer.exploringelasticsearch.com/</a><br><img src="images/elastichammer.png" width="500" height="500">
+      </section>
+      <section>
+        <h2>Fork me!</h2>
+        <h3>And have some instant fun<br> with Elasticsearch and AngularJS</h3>
+        <p><a href="https://github.com/mwanjura/elasticsearch-demo" target="_blank">https://github.com/mwanjura/elasticsearch-demo</a></p>
+      </section>
+      <section>
+        <h2>Fragen?</h2>
+      </section>
+      <section>
+        <h2>THANK YOU</h2><img src="http://www.esponce.com/create/download/output-normal.png?sid=032ee78af095495ba2ae354a915489ab" width="200"><a href="https://github.com/mwanjura/elasticsearch-presentation">github.com/mwanjura/elasticsearch-presentation</a>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
