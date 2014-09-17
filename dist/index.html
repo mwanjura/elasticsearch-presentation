@@ -32,8 +32,8 @@
         <h3>I need a search for my shop?</h3><br>
         <h2>Me:</h2>
         <h3>Easy! Let's use SQL!</h3><br>
-        <pre><code class="language-javascript">SELECT * FROM produkt
-    WHERE titel LIKE '%foobar%'
+        <pre><code class="language-javascript">SELECT * FROM product
+    WHERE title LIKE '%foobar%'
     ORDER BY price DESC
     LIMIT 1000;
     </code></pre>
@@ -92,14 +92,14 @@
         <p>It woulnd't be fair to compare a Solr 3.x with an Elasticsearch 1.x.</p>
       </section>
       <section>
-        <h2>Solr 4.x and Elasticsearch 1.x are equal competitors</h2><br>
+        <h2>Solr 4.10 and Elasticsearch 1.3 are equal competitors</h2><br>
         <p>In our infrastructure scaleability is key!<br>So we decided to move to Elasticsearch.</p><br><b>Our evaluation keypoints were:</b>
         <ul class="bullet">
           <li>Elasticsearch is the more modern and faster growing ecosystem</li>
           <li>It is designed to be distributed from the ground up</li>
           <li>Friendlier to teams which are used to REST APIs and JSON</li>
-          <li>We already use Logstash+Kibana for webserver log aggregation<br><small>(with an index amount of hundrets of gigabyte)</small></li>
-          <li>Big scale portals like GitHub, XING, SoundCloud use it</li>
+          <li>We already use Logstash+Kibana for webserver log aggregation<br><small>(with an index amount of hundreds of gigabyte)</small></li>
+          <li>Big scale portals like GitHub, XING, SoundCloud already use it</li>
         </ul>
       </section>
       <section>
@@ -255,10 +255,10 @@ curl -XPUT 'http://127.0.0.1:9200/blog/post/3' -d '{
         <p><a href="https://github.com/mwanjura/elasticsearch-demo" target="_blank">https://github.com/mwanjura/elasticsearch-demo</a></p>
       </section>
       <section>
-        <h2>Fragen?</h2>
+        <h2>Questions?</h2>
       </section>
       <section>
-        <h2>THANK YOU</h2><img src="images/qrcode.png" width="200"><a href="https://github.com/mwanjura/elasticsearch-presentation">github.com/mwanjura/elasticsearch-presentation</a>
+        <h2>Thank you!</h2><img src="images/qrcode.png" width="200"><a href="https://github.com/mwanjura/elasticsearch-presentation">github.com/mwanjura/elasticsearch-presentation</a>
       </section>
     </article>
     <script src="build/build.js"></script>
